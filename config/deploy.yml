@@ -2,7 +2,7 @@
 service: blog
 
 # Name of the container image.
-image: samozeleznik/Blog2025
+image: samozeleznik/blog2025
 
 # Deploy to these servers.
 servers:
