@@ -26,6 +26,10 @@
 
   <body>
     <%= button_to "Sign out", session_path, method: :delete if authenticated? %>
+    <%= form_with url: posts_path, method: :get do |form| %>
+        <%= form.search_field :query, placeholder: 'Poišči blog...' %>
+        <%= form.submit "Search" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

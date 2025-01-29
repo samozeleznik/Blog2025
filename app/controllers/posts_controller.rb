@@ -3,7 +3,12 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    if params.has_key?(:query)
+      query = "%" + Post.sanitize_sql_like(params[:query]) + "%"
+      @posts = Post.joins(:rich_text_body).where("title LIKE ? OR action_text_rich_texts.body LIKE ?", query, query)
+    else
+      @posts = Post.all
+    end
   end
 
   # GET /posts/1 or /posts/1.json
